@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Ingrid Correia | Saúde e Inovação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,ital,wght@6..72,0,500;6..72,0,600;6..72,1,500;6..72,1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta de Cores Estrita */
+            --bg-main: #F3EFE8;      /* Cinza-marfinado quente */
+            --bg-alt: #F7F1E8;       /* Marfim */
+            --surface: #FFFDF9;      /* Branco quente */
+            --primary: #8E2529;      /* Vinho profundo */
+            --accent: #C49A4A;       /* Dourado fosco */
+            --text-main: #3F3028;    /* Café profundo (Títulos e Textos principais) */
+            --text-sec: #6F6259;     /* Taupe escuro (Textos secundários) */
+            --line: #D3BA9D;         /* Bege */
+            
+            /* Tipografia */
+            --font-title: 'Newsreader', serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            font-family: var(--font-body);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-title);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        p {
+            color: var(--text-sec);
+            font-size: 1.1rem;
+            max-width: 70ch; 
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* 
+         * HEADER
+         */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 4%;
+            background-color: var(--bg-main);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 65px; /* Tamanho ajustado para a nova logo com texto */
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            color: var(--text-sec);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-header {
+            background-color: var(--primary);
+            color: var(--surface) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-header:hover {
+            background-color: var(--text-main);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            margin: 5px 0;
+        }
+
+        /* 
+         * BUTTONS
+         */
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--surface);
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 2px;
+            border: 1px solid var(--primary);
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--text-main);
+            border-color: var(--text-main);
+            color: var(--surface);
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .btn-link:hover {
+            color: var(--text-main);
+            gap: 0.8rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 2px;
+            border: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background-color: var(--bg-alt);
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* 
+         * HERO SECTION
+         */
+        .hero {
+            display: flex;
+            align-items: stretch;
+            min-height: 85vh;
+            background-color: var(--bg-main);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6% 8% 6% 6%;
+        }
+
+        .eyebrow {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-sec);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 
+         * SEÇÕES GERAIS
+         */
+        section {
+            padding: 8rem 6%;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .bg-alt { background-color: var(--bg-alt); }
+        .bg-surface { background-color: var(--surface); }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        /* Grade 2 Colunas */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        /* Blocos Editoriais (Projetos) */
+        .editorial-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 8rem;
+        }
+
+        .editorial-block:nth-child(even) {
+            direction: rtl;
+        }
+
+        .editorial-block:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .editorial-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 2px;
+            background-color: var(--bg-alt); /* Placeholder color */
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sec);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .editorial-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary); /* Destaque sutil no título do projeto */
+        }
+
+        /* Destaque / Callout */
+        .highlight-box {
+            background-color: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-box p {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        /* 
+         * ABOUT (Abertura da Trajetória)
+         */
+        .about-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 6rem 6% 3rem 6%;
+            background-color: var(--bg-main);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-sec);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--line);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-sec);
+            font-size: 0.9rem;
+        }
+
+        /* 
+         * RESPONSIVIDADE (Mobile)
+         */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.8rem; }
+            section { padding: 6rem 5%; }
+            .grid-2 { gap: 3rem; }
+            .editorial-block { gap: 3rem; margin-bottom: 5rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* Header & Menu */
+            header {
+                padding: 1rem 5%;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-main);
+                flex-direction: column;
+                padding: 2rem 5%;
+                border-bottom: 1px solid var(--line);
+                gap: 1.5rem;
+                align-items: flex-start;
+                box-shadow: 0 10px 20px rgba(63, 48, 40, 0.05);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .btn-header {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            /* Hero Reordering */
+            .hero {
+                flex-direction: column;
+                min-height: auto;
+            }
+            .hero-content {
+                padding: 12% 5% 8% 5%;
+                display: flex;
+                flex-direction: column;
+            }
+            .eyebrow { order: 1; }
+            .hero h1 { 
+                order: 2; 
+                font-size: 48px; /* Conforme especificação */
+                line-height: 1.05; 
+                margin-bottom: 1rem;
+            }
+            .hero p { order: 3; font-size: 1.1rem; }
+            .action-group {
+                order: 4;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .btn-primary { width: 100%; padding: 1.2rem; }
+            .btn-link { padding: 0.5rem 0; }
+            
+            .hero-image {
+                order: 5;
+                width: 100%;
+                height: 55vh;
+            }
+
+            /* General Sections */
+            .grid-2, .editorial-block {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .editorial-block:nth-child(even) {
+                direction: ltr;
+            }
+            
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo-container">
+            <img src="./logo.png" alt="Dra. Ingrid Correia Símbolo">
+        </div>
+        
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Saúde</a>
+            <a href="#inovacao">Inovação</a>
+            <a href="#formacao">Formação</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        
+        <a href="https://wa.me/5585987125624?text=Ol%C3%A1%2C%20Dra.%20Ingrid%21%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20a%20avalia%C3%A7%C3%A3o%20em%20Fisioterapia%20Respirat%C3%B3ria%20e%20do%20Sono." target="_blank" class="btn-header">Agendar</a>
+        
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- BANNER INICIAL -->
+    <main id="home" class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Fisioterapia Respiratória e do Sono</div>
+            <h1><em>Ciência e cuidado</em> para transformar a respiração, o sono, a saúde e a performance.</h1>
+            <p>Uma atuação que integra atendimento fisioterapêutico individualizado do paciente ao atleta, desenvolvimento de tecnologias e formação de profissionais em saúde.</p>
+            <div class="action-group">
+                <a href="https://wa.me/5585987125624?text=Ol%C3%A1%2C%20Dra.%20Ingrid%21%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20a%20avalia%C3%A7%C3%A3o%20em%20Fisioterapia%20Respirat%C3%B3ria%20e%20do%20Sono." target="_blank" class="btn-primary">Agende uma avaliação</a>
+                <a href="#sobre" class="btn-link">Conheça minha atuação &rarr;</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="./foto-sobre.jpg" alt="Dra. Ingrid Correia">
+        </div>
+    </main>
+
+    <!-- APRESENTAÇÃO RESUMIDA (Página Inicial) -->
+    <section class="bg-alt">
+        <div class="section-header">
+            <h2>Saúde, ciência e inovação em uma mesma trajetória.</h2>
+            <p>Ingrid Correia é fisioterapeuta, Doutora em Ciências Médicas pela Universidade Federal do Ceará, pesquisadora, docente e gestora de inovação. Sua trajetória conecta a Fisioterapia Respiratória e do Sono ao desenvolvimento de tecnologias, à formação de profissionais e à criação de soluções para desafios reais da saúde.</p>
+        </div>
+        
+        <div class="grid-2">
+            <div>
+                <ul>
+                    <li>Doutora em Ciências Médicas pela Universidade Federal do Ceará.</li>
+                    <li>Diretora de Inovação da Universidade Christus.</li>
+                    <li>Coordenadora Adjunta do Mestrado e Doutorado Profissional em Tecnologia Minimamente Invasiva e Simulação na Área da Saúde.</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Fisioterapeuta com atuação em Fisioterapia Respiratória e do Sono.</li>
+                    <li>Pesquisadora e desenvolvedora de projetos e tecnologias em saúde.</li>
+                    <li>Integrante do Departamento Nacional de Distúrbios Respiratórios do Sono da ASSOBRAFIR, mandato 2025–2028.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem;">
+            <a href="#sobre" class="btn-outline">Conheça minha trajetória</a>
+        </div>
+    </section>
+
+    <!-- PÁGINA SOBRE: ABERTURA -->
+    <section id="sobre" class="bg-surface">
+        <div class="grid-2">
+            <div class="about-image">
+                <img src="./foto-trajetoria.jpg" alt="Dra. Ingrid Correia - Trajetória">
+            </div>
+            <div class="about-content">
+                <h2>Uma trajetória construída entre o cuidado, a ciência e a inovação.</h2>
+                <p>Sou Ingrid Correia, fisioterapeuta, Doutora em Ciências Médicas pela Universidade Federal do Ceará, pesquisadora, docente e gestora de inovação. Minha atuação profissional nasceu na assistência e foi ampliada pela pesquisa, pelo ensino e pelo desenvolvimento de tecnologias aplicadas à saúde.</p>
+                <p>Ao longo da minha trajetória, passei a conectar necessidades observadas no cuidado aos pacientes com projetos capazes de gerar novos produtos, processos, aplicativos, dispositivos e modelos de acompanhamento. Essa integração entre prática clínica, ciência e inovação orienta minha atuação na Fisioterapia Respiratória e do Sono, na pós-graduação e na gestão de projetos de inovação em saúde.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATUAÇÃO CLÍNICA -->
+    <section class="bg-main">
+        <div class="section-header">
+            <h2>Fisioterapia Respiratória e do Sono</h2>
+            <p>Minha atuação clínica é direcionada à avaliação e ao acompanhamento de pessoas com alterações respiratórias, distúrbios respiratórios do sono, redução da capacidade funcional e fraqueza dos músculos respiratórios. O cuidado é individualizado e pode atender desde pacientes em diferentes condições clínicas até atletas que buscam aprimorar sua saúde e performance.</p>
+        </div>
+
+        <div class="grid-2" style="align-items: center;">
+            <div class="about-image">
+                <img src="./foto-clinica.png" alt="Dra. Ingrid Correia no Consultório">
+            </div>
+            <div>
+                <ul style="margin-bottom: 2rem;">
+                    <li>Avaliação e tratamento das disfunções respiratórias.</li>
+                    <li>Avaliação da força e da resistência dos músculos respiratórios.</li>
+                    <li>Treinamento muscular inspiratório.</li>
+                    <li>Avaliação funcional e cardiorrespiratória.</li>
+                    <li>Preparação e recuperação funcional antes e após cirurgias.</li>
+                    <li>Pré-habilitação de pacientes com câncer de pulmão.</li>
+                </ul>
+                <ul style="margin-bottom: 0;">
+                    <li>Avaliação e triagem dos distúrbios respiratórios do sono.</li>
+                    <li>Investigação diagnóstica em parceria com o médico do sono.</li>
+                    <li>Adaptação e acompanhamento do tratamento com CPAP.</li>
+                    <li>Escolha e ajuste de máscaras e acessórios.</li>
+                    <li>Análise dos dados dos equipamentos de pressão positiva.</li>
+                    <li>Estratégias para melhorar conforto, adesão e resultados do tratamento.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <p>Mais de 20 anos de experiência na área.</p>
+        </div>
+    </section>
+
+    <!-- FORMAÇÃO ACADÊMICA -->
+    <section id="formacao" class="bg-alt">
+        <div class="grid-2">
+            <div>
+                <h2>Formação e atuação acadêmica</h2>
+                <p>Na pós-graduação profissional, contribuo para a formação de pesquisadores e profissionais capazes de identificar problemas relevantes, desenvolver soluções, validar tecnologias e ampliar o impacto social do conhecimento produzido na universidade.</p>
+                <div style="margin-top: 3rem;">
+                    <a href="#" class="btn-outline">Conheça o Mestrado e Doutorado</a>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li>Doutora em Ciências Médicas pela Universidade Federal do Ceará — UFC.</li>
+                    <li>Coordenadora Adjunta do Mestrado e Doutorado Profissional em Tecnologia Minimamente Invasiva e Simulação na Área da Saúde da Universidade Christus.</li>
+                    <li>Docente e orientadora em projetos voltados ao desenvolvimento e à validação de tecnologias em saúde.</li>
+                    <li>Atuação na formação de profissionais para transformar problemas da prática em pesquisas, produtos, processos e soluções aplicáveis.</li>
+                    <li>Experiência em temas relacionados à pesquisa aplicada, inovação, empreendedorismo, posicionamento profissional e acesso ao mercado.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GESTÃO DA INOVAÇÃO -->
+    <section class="bg-surface">
+        <div class="section-header">
+            <h2>Inovação que conecta universidade e sociedade</h2>
+            <p>Como Diretora de Inovação da Universidade Christus, atuo na estruturação e no fortalecimento do ecossistema institucional de inovação, conectando pesquisadores, programas de pós-graduação, propriedade intelectual, laboratórios, serviços de saúde, empresas, governo e sociedade.</p>
+        </div>
+        
+        <div class="grid-2">
+            <ul>
+                <li>Desenvolvimento da política institucional de inovação.</li>
+                <li>Mapeamento de competências e organização do portfólio tecnológico.</li>
+                <li>Apoio ao desenvolvimento e à maturidade de projetos.</li>
+                <li>Propriedade intelectual e transferência de tecnologia.</li>
+            </ul>
+            <ul>
+                <li>Formação de parcerias estratégicas.</li>
+                <li>Captação de recursos para pesquisa, desenvolvimento e inovação.</li>
+                <li>Conexão entre universidade, SUS, empresas, governo e ecossistemas de inovação.</li>
+                <li>Criação de indicadores de resultados e impacto.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PROJETOS DE INOVAÇÃO E TECNOLOGIA -->
+    <section id="inovacao" class="bg-main">
+        <style>
+            .tech-list {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-top: 4rem;
+                border-top: 1px solid var(--line);
+            }
+            @media (min-width: 768px) {
+                .tech-list {
+                    grid-template-columns: 1fr 1fr;
+                    column-gap: 4rem;
+                }
+            }
+            .tech-item {
+                padding: 1.2rem 0;
+                border-bottom: 1px solid var(--line);
+                font-family: var(--font-heading);
+                font-size: 1.25rem;
+                color: var(--text-main);
+                font-weight: 500;
+            }
+            .tech-cta {
+                margin-top: 4rem;
+                text-align: center;
+                padding: 3rem 1rem;
+                background-color: var(--bg-alt);
+                border: 1px solid var(--line);
+                border-radius: 4px;
+            }
+            .tech-cta p {
+                max-width: 600px;
+                margin: 1.5rem auto 0;
+                color: var(--text-sec);
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+        </style>
+        
+        <div class="grid-2" style="align-items: center;">
+            <div>
+                <h2>Projetos e tecnologias em desenvolvimento</h2>
+                <p>Tecnologias desenvolvidas em colaboração com alunos do mestrado e doutorado e parceiros institucionais, a partir de necessidades reais da saúde.</p>
+                <div class="highlight-box" style="margin-top: 2rem; text-align: left; padding: 1.5rem; background-color: var(--bg-alt); border-left: 3px solid var(--highlight);">
+                    <p style="margin: 0; font-size: 0.95rem; color: var(--text-sec);">As soluções encontram-se em diferentes etapas de pesquisa, desenvolvimento, testes e validação e ainda não estão disponíveis para uso assistencial ou comercial.</p>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="./foto-inovacao.jpg" alt="Dra. Ingrid Correia - Inovação" style="aspect-ratio: 3/4; object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="tech-list">
+            <div class="tech-item">AlertAlergo</div>
+            <div class="tech-item">Reabilitação Pós-Parto</div>
+            <div class="tech-item">Pré-habilitação para Cirurgia de Câncer de Pulmão</div>
+            <div class="tech-item">PROSTATA-E</div>
+            <div class="tech-item">MonitIC</div>
+            <div class="tech-item">Surgery Quiz</div>
+            <div class="tech-item">FELC</div>
+            <div class="tech-item">ANATOM</div>
+        </div>
+
+        <div class="tech-cta">
+            <a href="mailto:ingridcngurgel@gmail.com?subject=Parceria%20em%20Pesquisa%20e%20Desenvolvimento" class="btn-outline" style="border-color: var(--primary); color: var(--primary);">Parcerias em pesquisa e desenvolvimento</a>
+            <p>Para instituições, pesquisadores e empresas interessados em colaboração científica, desenvolvimento tecnológico e validação de soluções em saúde.</p>
+        </div>
+    </section>
+
+    <!-- ATUAÇÃO CIENTÍFICA -->
+    <section class="bg-alt">
+        <div class="section-header" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2>Contribuição científica e profissional</h2>
+            <p style="margin-bottom: 2rem;">Além da assistência, do ensino e da inovação, participo de iniciativas voltadas ao desenvolvimento e à valorização da Fisioterapia nos distúrbios respiratórios do sono.</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <ul style="font-size: 1.1rem; line-height: 1.6; color: var(--text-sec);">
+                <li style="margin-bottom: 0.8rem;">Integrante do Departamento Nacional de Distúrbios Respiratórios do Sono da ASSOBRAFIR (2025–2028).</li>
+                <li style="margin-bottom: 0.8rem;">Participação em congressos, cursos e atividades nas áreas de sono, fisioterapia respiratória, cardiologia, oncologia, tecnologia e inovação.</li>
+                <li style="margin-bottom: 0.8rem;">Atuação na formação e atualização de profissionais da saúde.</li>
+                <li style="margin-bottom: 0.8rem;">Participação em redes de colaboração institucionais.</li>
+            </ul>
+            <div style="margin-top: 3rem; text-align: center;">
+                <a href="http://lattes.cnpq.br/4524626194350573" target="_blank" class="btn-outline">Acessar Currículo Lattes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMADA FINAL -->
+    <!-- CHAMADA FINAL / CONTATO -->
+    <section id="contato" class="bg-surface" style="text-align: center; padding-top: 2rem;">
+        <h2>Vamos iniciar seu acompanhamento?</h2>
+        <p style="max-width: 600px; margin: 0 auto 3rem; color: var(--text-sec);">Entre em contato para agendar uma avaliação clínica ou conversar sobre parcerias em projetos de pesquisa e inovação.</p>
+        <div class="action-group" style="justify-content: center;">
+            <a href="https://wa.me/5585987125624?text=Ol%C3%A1%2C%20Dra.%20Ingrid%21%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20a%20avalia%C3%A7%C3%A3o%20em%20Fisioterapia%20Respirat%C3%B3ria%20e%20do%20Sono." target="_blank" class="btn-primary">Agende uma avaliação</a>
+            <a href="mailto:ingridcngurgel@gmail.com" class="btn-outline">Proponha uma parceria</a>
+            <a href="mailto:ingridcngurgel@gmail.com" class="btn-outline">Convites acadêmicos</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="./logo.png" alt="Dra. Ingrid Correia" style="height: 65px; margin-bottom: 1.5rem;">
+                <p>Ciência, cuidado e inovação para transformar a saúde.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <a href="https://wa.me/5585987125624" target="_blank">(85) 98712-5624</a>
+                <a href="mailto:ingridcngurgel@gmail.com">ingridcngurgel@gmail.com</a>
+                <p style="margin-top: 0.8rem; line-height: 1.4;">Pulmocenter – Shopping Pátio Dom Luís<br>Av. Dom Luís, 1200, Torre 1, 7º andar<br>Meireles, Fortaleza–CE</p>
+            </div>
+            <div class="footer-col">
+                <h4>Profissional</h4>
+                <p style="margin-bottom: 0;">Dra. Ingrid Correia</p>
+                <p style="margin-bottom: 0;">Fisioterapeuta</p>
+                <p>CREFITO 136158-F</p>
+            </div>
+            <div class="footer-col">
+                <h4>Redes e Produção</h4>
+                <a href="https://www.instagram.com/draingridcorreia/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    @draingridcorreia
+                </a>
+                <a href="http://lattes.cnpq.br/4524626194350573" target="_blank">Currículo Lattes</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Dra. Ingrid Correia. Todos os direitos reservados.</div>
+            <div>*Atuação clínica independente da vinculação institucional à Universidade Christus.</div>
+        </div>
+    </footer>
+
+    <!-- Script para o Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            var nav = document.getElementById("navLinks");
+            nav.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
